@@ -21,5 +21,3 @@ production:
   username: <%= ENV["FURIMA_42232_USERNAME"] %>
   password: <%= ENV["FURIMA_42232_PASSWORD"] %>
   host: <%= ENV["FURIMA_42232_HOST"] %>
-
-  
