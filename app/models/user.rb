@@ -1,3 +1,4 @@
 class User < ApplicationRecord
-  # devise の記述を削除
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
 end
