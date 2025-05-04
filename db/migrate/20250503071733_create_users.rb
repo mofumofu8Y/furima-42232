@@ -9,9 +9,9 @@ class CreateUsers < ActiveRecord::Migration[7.1]
       t.string :first_name_kana, null: false
       t.string :last_name_kana, null: false
       t.date :birthday, null: false
-      t.string :phone_number
+      t.string :phone_number, unique: true # ユニーク制約を付けるかどうか再確認
       t.text :address
-      t.integer :status, default: 0 # ユーザーのステータス（例: 0 = active, 1 = suspended）
+      t.integer :status, default: 0, null: false # ユーザーのステータス（例: 0 = active, 1 = suspended）
 
       # Deviseが必要なカラム
       t.datetime :remember_created_at
@@ -22,8 +22,9 @@ class CreateUsers < ActiveRecord::Migration[7.1]
       t.timestamps
     end
 
-    # 👇 ユニーク制約を追加
+    # ユニーク制約を追加
     add_index :users, :email, unique: true
-    add_index :users, :phone_number, unique: true
+    # 必要であれば、statusカラムにインデックスも追加
+    add_index :users, :status
   end
 end
